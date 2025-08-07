@@ -6,7 +6,16 @@ import RatingStars from '@/components/molecules/RatingStars';
 import ImageGallery from '@/components/organisms/ImageGallery';
 import Button from '@/components/atoms/Button';
 import Badge from '@/components/atoms/Badge';
-import { Game } from '@/types/game'; 
+import { Game } from '../../../../types/game'; 
+
+interface Screenshot {
+    id: number;
+    image: string;
+}
+
+interface ScreenshotsResponse {
+    results: Screenshot[];
+}
 
 async function getGame(id: string): Promise<Game> {
     const response = await fetch(`https://api.rawg.io/api/games/${id}?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}`);
@@ -16,7 +25,7 @@ async function getGame(id: string): Promise<Game> {
     return response.json();
 }
 
-async function getGameScreenshots(id: string) {
+async function getGameScreenshots(id: string): Promise<ScreenshotsResponse> {
     const response = await fetch(`https://api.rawg.io/api/games/${id}/screenshots?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}`);
     if (!response.ok) {
         return { results: [] };
@@ -27,7 +36,7 @@ async function getGameScreenshots(id: string) {
 export default async function GameDetailPage({ params }: { params: { id: string } }) {
     const game = await getGame(params.id);
     const screenshots = await getGameScreenshots(params.id);
-    const imageUrls = [game.background_image, ...screenshots.results.map((ss: any) => ss.image)];
+        const imageUrls = [game.background_image, ...screenshots.results.map((ss: Screenshot) => ss.image)];
 
     return (
         <div className="font-sans bg-dark text-light min-h-screen p-4 sm:p-8">
@@ -55,15 +64,15 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                         </div>
 
                         <div className="bg-black/20 border border-white/10 rounded-lg p-4 mb-6">
-                           <p className="text-sm text-gray-400">Dirilis pada: {game.released}</p>
+                           <p className="text-sm text-gray-400">Dirilis pada: {new Date(game.released).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                            <p className="text-sm text-gray-400">Pengembang: {game.developers.map(dev => dev.name).join(', ')}</p>
                         </div>
                         
                         <div className="mt-auto">
-                           <Button href={game.website || '#'} className="w-full text-lg">
-                               <i className="fas fa-globe mr-3"></i>
-                               Kunjungi Situs Web
-                           </Button>
+                            <Button href={game.website || '#'} className="w-full text-lg">
+                                <i className="fas fa-globe mr-3"></i>
+                                Kunjungi Situs Web
+                            </Button>
                         </div>
                     </div>
                 </div>

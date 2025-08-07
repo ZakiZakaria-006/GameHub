@@ -1,4 +1,3 @@
-// Buat folder `types` di root proyek Anda
 export interface Game {
   id: number;
   name: string;

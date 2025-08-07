@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import RatingStars from './RatingStars';
 import Badge from '../atoms/Badge';
-import { Game } from '@/types/game';
 import Image from 'next/image';
+import { Game } from '../../../types/game';
 
 interface GameCardProps {
   game: Game;

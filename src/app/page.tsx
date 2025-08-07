@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import GameCard from '@/components/molecules/GameCard';
 import SkeletonCard from '@/components/molecules/SkeletonCard';
-import { Game } from '@/types/game'; 
 import Image from 'next/image';
+import { Game } from '../../types/game';
 
 const featuresData = [
     { icon: 'fas fa-gamepad', title: 'Ribuan Game', desc: 'Jelajahi katalog game yang luas dari berbagai genre.' },
