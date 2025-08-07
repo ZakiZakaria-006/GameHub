@@ -35,7 +35,7 @@ export default function ImageGallery({ images = [], title = 'Game Image' }: Imag
             onClick={() => setSelectedImage(img)}
             className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border-2 transition-all duration-200 ${selectedImage === img ? 'border-primary scale-105' : 'border-transparent hover:border-primary/50'}`}
           >
-            <Image src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+            <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
           </button>
         ))}
       </div>

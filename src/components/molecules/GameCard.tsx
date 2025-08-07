@@ -16,7 +16,7 @@ export default function GameCard({ game }: GameCardProps) {
     <Link href={`/games/${game.id}`} className="block h-full">
       <div className="bg-black/20 rounded-lg overflow-hidden shadow-lg border border-white/10 flex flex-col group transition-all duration-300 hover:border-primary hover:-translate-y-2 hover:shadow-primary/20 h-full">
         <div className="relative">
-          <Image src={game.background_image} alt={game.name} className="w-full h-56 object-cover" />
+          <img src={game.background_image} alt={game.name} className="w-full h-56 object-cover" />
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <p className="text-white font-bold text-lg">Lihat Detail</p>
           </div>

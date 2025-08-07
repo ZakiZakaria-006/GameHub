@@ -51,7 +51,7 @@ export default function HomePage() {
                         </div>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="hidden lg:block">
-                        <Image src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="Featured Game" className="rounded-3xl shadow-2xl shadow-primary/20 object-cover" />
+                        <img src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="Featured Game" className="rounded-3xl shadow-2xl shadow-primary/20 object-cover" />
                     </motion.div>
                 </section>
 
