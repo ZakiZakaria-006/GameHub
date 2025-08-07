@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
 import RatingStars from '@/components/molecules/RatingStars';
 import ImageGallery from '@/components/organisms/ImageGallery';
 import Button from '@/components/atoms/Button';
@@ -15,6 +14,11 @@ interface Screenshot {
 
 interface ScreenshotsResponse {
     results: Screenshot[];
+}
+
+interface GameDetailPageProps {
+    params: { id: string };
+    searchParams: { [key: string]: string | string[] | undefined };
 }
 
 async function getGame(id: string): Promise<Game> {
@@ -32,11 +36,10 @@ async function getGameScreenshots(id: string): Promise<ScreenshotsResponse> {
     }
     return response.json();
 }
-
-export default async function GameDetailPage({ params }: { params: { id: string } }) {
+export default async function GameDetailPage({ params }: GameDetailPageProps) {
     const game = await getGame(params.id);
     const screenshots = await getGameScreenshots(params.id);
-        const imageUrls = [game.background_image, ...screenshots.results.map((ss: Screenshot) => ss.image)];
+    const imageUrls = [game.background_image, ...screenshots.results.map((ss: Screenshot) => ss.image)];
 
     return (
         <div className="font-sans bg-dark text-light min-h-screen p-4 sm:p-8">
