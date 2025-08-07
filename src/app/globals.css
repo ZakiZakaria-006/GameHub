@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  --dark: #121212;
+  --light: #f5f5f5;
+  --primary: #007BFF;
+  --secondary: #6C757D;
+  --card: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.bg-animated-gradient {
+  background-image: linear-gradient(
+    to right,
+    #1a1a2e,
+    #0f3460,
+    #1a1a2e
+  );
+  background-size: 200% 200%;
+  animation: gradient-move 15s ease infinite;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
