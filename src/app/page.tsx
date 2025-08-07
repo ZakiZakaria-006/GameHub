@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import GameCard from '@/components/molecules/GameCard';
 import SkeletonCard from '@/components/molecules/SkeletonCard';
 import { Game } from '@/types/game'; 
+import Image from 'next/image';
 
 const featuresData = [
     { icon: 'fas fa-gamepad', title: 'Ribuan Game', desc: 'Jelajahi katalog game yang luas dari berbagai genre.' },
@@ -50,7 +51,7 @@ export default function HomePage() {
                         </div>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="hidden lg:block">
-                        <img src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="Featured Game" className="rounded-3xl shadow-2xl shadow-primary/20 object-cover" />
+                        <Image src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="Featured Game" className="rounded-3xl shadow-2xl shadow-primary/20 object-cover" />
                     </motion.div>
                 </section>
 
