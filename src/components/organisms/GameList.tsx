@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import GameCard from '../molecules/GameCard';
 import SkeletonCard from '../molecules/SkeletonCard';
-import { Game } from '@/types/game';
+import { Game } from '../../../types/game';
 
 interface GameListProps {
   genre: string;
@@ -24,12 +24,18 @@ export default function GameList({ genre }: GameListProps) {
         const apiUrl = `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}&page_size=40${genreQuery}`;
         
         const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error("Gagal mengambil data game");
+        if (!response.ok) {
+            throw new Error("Gagal mengambil data game dari server.");
+        }
         
         const data = await response.json();
         setGames(data.results);
-      } catch (e: any) {
-        setError(e.message);
+      } catch (e: unknown) { 
+        if (e instanceof Error) {
+            setError(e.message);
+        } else {
+            setError("Terjadi kesalahan yang tidak diketahui.");
+        }
       } finally {
         setLoading(false);
       }
@@ -39,7 +45,7 @@ export default function GameList({ genre }: GameListProps) {
   }, [genre]); 
 
   if (error) {
-    return <p className="text-red-500 text-center">Gagal memuat game... Coba lagi nanti.</p>;
+    return <p className="text-red-500 text-center">{error} Coba lagi nanti.</p>;
   }
 
   return (
