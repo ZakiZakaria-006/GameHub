@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import GameCard from '@/components/molecules/GameCard';
 import SkeletonCard from '@/components/molecules/SkeletonCard';
-import Image from 'next/image';
 import { Game } from '../../types/game';
 
 const featuresData = [
